@@ -1,0 +1,17 @@
+
+
+h1 {
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  font-family: $font-primary;
+  color: $color-primary;
+  text-align: center;
+}
+
+.logo {
+  width: auto;
+  height: 35px;
+  border: 1px solid black;
+  background-image: url('../../svg/webpack.svg');
+}
