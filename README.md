@@ -1,5 +1,5 @@
 # Simple webpack4 starter kit
-(dev/prod config, scss, es7, dev-server)
+(dev/prod config, scss, es6, dev-server)
 
 ## Requirements
 
@@ -13,7 +13,7 @@
 # Runs development server (Webpack dev server)
 $ npm start
 
-# Build command
+# Build for production
 $ npm run build
 
 ```
@@ -22,10 +22,7 @@ $ npm run build
 
 * [Webpack 4](https://github.com/webpack/webpack)
 * [Webpack Dev Server](https://github.com/webpack/webpack-dev-server)
-* [HMR](https://webpack.js.org/concepts/hot-module-replacement/)
 * [Babel](https://babeljs.io/)
-* [EsLint](https://eslint.org/docs/user-guide/getting-started)
-* [StyleLint](https://github.com/stylelint/stylelint)
 * [Postcss](https://github.com/postcss/postcss)
 * [Autoprefixer](https://github.com/postcss/autoprefixer)
 * Webpack Plugins: Html, Copy, MiniCssExtract
