@@ -1,15 +1,14 @@
 const path = require('path');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+function resolve(dir) {
+  return path.join(__dirname, '..', dir);
+}
 
 module.exports = {
-  entry: {
-    app: './src/js/index.js',
-  },
-
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+  resolve: {
+    alias: {
+      '@': resolve('src'),
+    },
   },
 
   module: {
@@ -19,7 +18,6 @@ module.exports = {
         use: [
           {
             loader: 'html-loader',
-            options: {minimize: true},
           },
         ],
       },
@@ -31,12 +29,13 @@ module.exports = {
         },
       },
       {
-        test: /\.(gif|png|jpe?g)$/i,
+        test: /\.(png|jpg|gif)$/,
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: 'images/[name][hash].[ext]',
+              outputPath: 'images/',
+              name: '[name][hash].[ext]',
             },
           },
           {
@@ -46,33 +45,55 @@ module.exports = {
                 progressive: true,
                 quality: 80,
               },
+              pngquant: {
+                quality: '65-90',
+                speed: 4,
+              },
+              gifsicle: {
+                optimizationLevel: 7,
+                interlaced: false,
+              },
             },
           },
         ],
       },
       {
-        test: /\.svg((\?.*)?|$)/,
-        loaders: [
-          'svg-url-loader',
-        ]
+        test: /\.(svg)$/,
+        exclude: /fonts/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'svg/',
+              name: '[name][hash].[ext]',
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              svgo: {
+                plugins: [
+                  {removeViewBox: false},
+                  {removeEmptyAttrs: false},
+                ],
+              },
+            },
+          },
+        ],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            name: 'fonts/[name][hash].[ext]',
+        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        exclude: /svg/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'fonts/',
+              name: '[name][hash].[ext]',
+            },
           },
-        },
+        ],
       },
     ],
   },
-
-  plugins: [
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-    }),
-  ],
 };

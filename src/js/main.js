@@ -1,9 +1,18 @@
-const getHeader = () => {
-  const element = document.createElement('h1');
+import moduleTest from './moduleTest';
 
-  element.innerHTML = 'Hello Webpack 4!';
+// This comment shouldn't be visible in production
 
-  return element;
-};
+class Webpack {
+  constructor(name) {
+    this.name = name;
+  }
 
-document.body.appendChild(getHeader());
+  sayHello() {
+    return `Hello ${this.name}!`;
+  }
+}
+
+let webpack = new Webpack('webpack 4');
+
+console.log(webpack.sayHello());
+moduleTest();

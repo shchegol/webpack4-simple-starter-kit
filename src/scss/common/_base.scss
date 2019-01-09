@@ -1,0 +1,11 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.svg {
+  width: 100%;
+  height: 100vh;
+  background: #2B3A42 url('~@/svg/webpack.svg') center no-repeat;
+  background-size: auto 150px;
+}

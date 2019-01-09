@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = merge(common, {
   mode: 'development',
@@ -19,17 +20,22 @@ module.exports = merge(common, {
               ],
             },
           },
-          'resolve-url-loader',
           'sass-loader',
         ],
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      favicon: 'favicon.ico',
+    }),
+  ],
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
     port: 9000,
     compress: true,
-    open: true,
+    open: false,
   },
 });
