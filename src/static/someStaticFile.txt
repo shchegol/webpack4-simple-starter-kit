@@ -1,0 +1,1 @@
+This file can be copy to static folder.

@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, '..', dir);
@@ -83,7 +84,6 @@ module.exports = {
       },
       {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        exclude: /svg/,
         use: [
           {
             loader: 'file-loader',
@@ -96,4 +96,13 @@ module.exports = {
       },
     ],
   },
+
+  plugins: [
+    new CopyPlugin([
+      {
+        from: 'src/static',
+        to: 'static',
+      },
+    ]),
+  ],
 };
