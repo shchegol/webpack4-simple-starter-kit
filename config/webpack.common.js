@@ -1,14 +1,10 @@
-const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
-
-function resolve(dir) {
-  return path.join(__dirname, '..', dir);
-}
+const util = require('./utils');
 
 module.exports = {
   resolve: {
     alias: {
-      '@': resolve('src'),
+      '@': util.resolve('src'),
     },
   },
 
@@ -60,7 +56,7 @@ module.exports = {
       },
       {
         test: /\.(svg)$/,
-        exclude: /fonts/,
+        exclude: util.resolve('src/fonts'),
         use: [
           {
             loader: 'file-loader',
@@ -84,7 +80,7 @@ module.exports = {
       },
       {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        exclude: /svg/,
+        exclude: util.resolve('src/svg'),
         use: [
           {
             loader: 'file-loader',
