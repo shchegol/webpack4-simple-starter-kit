@@ -5,6 +5,9 @@ module.exports = {
   resolve: {
     alias: {
       '@': util.resolve('src'),
+      'fonts': util.resolve('src/fonts'),
+      'img': util.resolve('src/img'),
+      'svg': util.resolve('src/svg'),
     },
   },
 
